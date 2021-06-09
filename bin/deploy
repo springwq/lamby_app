@@ -1,6 +1,8 @@
 #!/bin/sh
 set -e
 
+export RAILS_ENV=${RAILS_ENV:=production}
+
 docker-compose run \
   {% include "_cctmp/dash_name.txt" %} \
-  ./bin/_setup
+  ./bin/_deploy
