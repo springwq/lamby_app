@@ -3,7 +3,7 @@ set -e
 
 # https://github.com/aws/aws-sam-cli/issues/2447
 AWS_ACCOUNT_ID=$(aws sts get-caller-identity --query Account --output text)
-IMAGE_REPOSITORY="${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/{% include "_cctmp/dash_name.txt" %}"
+IMAGE_REPOSITORY="${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/lambyapp"
 
 echo "== Lamby build =="
 ./bin/_build
@@ -24,7 +24,7 @@ echo "== SAM deploy =="
 sam deploy \
   --region "$AWS_DEFAULT_REGION" \
   --template-file ./.aws-sam/build/packaged.yaml \
-  --stack-name "{% include "_cctmp/dash_name.txt" %}-${RAILS_ENV}" \
+  --stack-name "lambyapp-${RAILS_ENV}" \
   --image-repository "$IMAGE_REPOSITORY" \
   --capabilities "CAPABILITY_IAM" \
   --parameter-overrides \

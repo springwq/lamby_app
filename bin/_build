@@ -19,15 +19,7 @@ echo "== Environments & Configuration =="
 # ./bin/rails \
 #   -rlamby \
 #   lamby:ssm:dotenv \
-#   LAMBY_SSM_PARAMS_PATH="/{% include "_cctmp/file_name.txt" %}/${RAILS_ENV}/env"
+#   LAMBY_SSM_PARAMS_PATH="/lambyapp/${RAILS_ENV}/env"
 
 echo "== Asset Hosts & Precompiling =="
 NODE_ENV='production' ./bin/rails assets:precompile
-
-echo "== Cleanup Unused Files & Directories =="
-rm -rf \
-  log \
-  node_modules \
-  test \
-  tmp \
-  vendor/bundle/ruby/2.7.0/cache

@@ -1,12 +1,11 @@
 version: '3.7'
 services:
-  {% include "_cctmp/dash_name.txt" %}:
+  lambyapp:
     build:
       context: '.'
       dockerfile: Dockerfile-build
     entrypoint: ./bin/entrypoint
     environment:
-      - GEM_HOME=/var/task/vendor/bundle/ruby/2.7.0
       - RAILS_ENV=${RAILS_ENV-development}
       - SAM_CLI_TELEMETRY=0
       - AWS_PROFILE=${AWS_PROFILE-default}
@@ -16,6 +15,5 @@ services:
       - CI=${CI}
     volumes:
       - ${PWD}:/var/task
-      - ${HOME}/.aws:/lamby/.aws
+      - ${HOME}/.aws:/root/.aws
       - /var/run/docker.sock:/var/run/docker.sock
-    user: "lamby"
